@@ -17,11 +17,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val dataManager = DataManager()
         val adapterCourses =
             ArrayAdapter<CourseInfo>(this,
                 android.R.layout.simple_spinner_item,
-                dataManager.courses.values.toList())
+                DataManager.courses.values.toList())
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCourses.adapter = adapterCourses
     }
