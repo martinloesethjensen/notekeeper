@@ -24,10 +24,18 @@ object DataManager {
     }
 
     private fun initializeNotes(){
-        var noteInfo = NoteInfo(course = CourseInfo(courseId = "android_async", title = "Android Async Programming and Services"), title = "Note for android async", text = "Hey this is text")
+        var noteInfo = NoteInfo(
+            course = CourseInfo(courseId = "android_async", title = "Android Async Programming and Services"),
+            title = "Note for android async",
+            text = "Hey this is text from the note for android sync."
+        )
         notes.add(noteInfo)
 
-        noteInfo = NoteInfo(course = CourseInfo(courseId = "java_lang", title = "Java Fundamentals: The Java Language"), title = "Note for java_lang", text = "Hey this is text")
+        noteInfo = NoteInfo(
+            course = CourseInfo(courseId = "java_lang", title = "Java Fundamentals: The Java Language"),
+            title = "Note for java_lang",
+            text = "Hey this is the second text piece."
+        )
         notes.add(noteInfo)
     }
 }

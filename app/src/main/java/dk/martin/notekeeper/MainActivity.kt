@@ -17,9 +17,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val adapterCourses =
-            ArrayAdapter<CourseInfo>(this,
+            ArrayAdapter<CourseInfo>(
+                this,
                 android.R.layout.simple_spinner_item,
-                DataManager.courses.values.toList())
+                DataManager.courses.values.toList()
+            )
         adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerCourses.adapter = adapterCourses
 
@@ -51,7 +53,44 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_next -> {
+                moveNext()
+                true
+            }
+            R.id.action_previous -> {
+                movePrevious()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun moveNext() {
+        ++notePosition
+        displayNote()
+        invalidateOptionsMenu()
+    }
+
+    private fun movePrevious() {
+        --notePosition
+        displayNote()
+        invalidateOptionsMenu()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (notePosition >= DataManager.notes.lastIndex) {
+            val menuItem = menu?.findItem(R.id.action_next)
+            if (menuItem != null) {
+                menuItem.icon = getDrawable(R.drawable.ic_block_white_24dp)
+                menuItem.isEnabled = false
+            }
+        } else if (notePosition <= 1) {
+            val menuItem = menu?.findItem(R.id.action_previous)
+            if (menuItem != null) {
+                menuItem.icon = getDrawable(R.drawable.ic_block_white_24dp)
+                menuItem.isEnabled = false
+            }
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 }
