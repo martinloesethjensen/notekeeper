@@ -37,5 +37,19 @@ object DataManager {
             text = "Hey this is the second text piece."
         )
         notes.add(noteInfo)
+
+        noteInfo = NoteInfo(
+            course = courses["android_intents"],
+            title = "Intents for android",
+            text = "Text about intents"
+        )
+        notes.add(noteInfo)
+
+        noteInfo = NoteInfo(
+            course = courses["java_core"],
+            title = "About java core",
+            text = "Java core notes"
+        )
+        notes.add(noteInfo)
     }
 }

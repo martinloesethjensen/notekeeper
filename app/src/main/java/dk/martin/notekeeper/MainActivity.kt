@@ -81,14 +81,12 @@ class MainActivity : AppCompatActivity() {
         if (notePosition >= DataManager.notes.lastIndex) {
             val menuItem = menu?.findItem(R.id.action_next)
             if (menuItem != null) {
-                menuItem.icon = getDrawable(R.drawable.ic_block_white_24dp)
-                menuItem.isEnabled = false
+                menuItem.isVisible = false
             }
-        } else if (notePosition <= 1) {
+        } else if (notePosition < 1) {
             val menuItem = menu?.findItem(R.id.action_previous)
             if (menuItem != null) {
-                menuItem.icon = getDrawable(R.drawable.ic_block_white_24dp)
-                menuItem.isEnabled = false
+                menuItem.isVisible = false
             }
         }
         return super.onPrepareOptionsMenu(menu)
