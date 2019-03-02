@@ -78,15 +78,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        if (notePosition >= DataManager.notes.lastIndex) {
-            val menuItem = menu?.findItem(R.id.action_next)
-            if (menuItem != null) {
-                menuItem.isVisible = false
+        val lastNote = DataManager.notes.lastIndex
+        when (notePosition) {
+            lastNote -> {
+                val menuItem = menu?.findItem(R.id.action_next)
+                menuItem?.isVisible = menuItem == null
             }
-        } else if (notePosition < 1) {
-            val menuItem = menu?.findItem(R.id.action_previous)
-            if (menuItem != null) {
-                menuItem.isVisible = false
+            FIRST_NOTE -> {
+                val menuItem = menu?.findItem(R.id.action_previous)
+                menuItem?.isVisible = menuItem == null
             }
         }
         return super.onPrepareOptionsMenu(menu)
