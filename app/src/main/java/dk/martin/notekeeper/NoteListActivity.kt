@@ -3,7 +3,9 @@ package dk.martin.notekeeper
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.widget.ArrayAdapter
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_note_list.*
 import kotlinx.android.synthetic.main.content_note_list.*
 
@@ -15,24 +17,19 @@ class NoteListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            val activityIntent = Intent(this, MainActivity::class.java)
+            val activityIntent = Intent(this, NoteActivity::class.java)
             startActivity(activityIntent)
         }
 
-        listNotes.adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_list_item_1,
-            DataManager.notes
-        )
-        listNotes.setOnItemClickListener { _, _, position, _ ->
-            val activityIntent = Intent(this, MainActivity::class.java)
-            activityIntent.putExtra(NOTE_POSITION, position)
-            startActivity(activityIntent)
-        }
+        listItems.layoutManager = LinearLayoutManager(this)
+
+        listItems.adapter = NoteRecyclerAdapter(this, DataManager.notes)
+
+
     }
 
     override fun onResume() {
         super.onResume()
-        (listNotes.adapter as ArrayAdapter<*>).notifyDataSetChanged()
+        listItems.adapter?.notifyDataSetChanged()
     }
 }

@@ -1,6 +1,7 @@
 package dk.martin.notekeeper
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
@@ -8,7 +9,7 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
     private var notePosition = POSITION_NOT_SET
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayNote() {
+        if (notePosition > DataManager.notes.lastIndex){
+            showMessage("Note not found")
+            return
+        }
+
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
@@ -65,7 +71,11 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             R.id.action_next -> {
-                moveNext()
+                if(notePosition < DataManager.notes.lastIndex) {
+                    moveNext()
+                } else {
+                    showMessage("No more notes")
+                }
                 true
             }
             R.id.action_previous -> {
@@ -74,6 +84,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showMessage(message: String) {
+        Snackbar.make(textNoteTitle, message, Snackbar.LENGTH_LONG).show()
     }
 
     private fun moveNext() {

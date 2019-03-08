@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
-      tools:context="dk.martin.notekeeper.MainActivity">
+      tools:context="dk.martin.notekeeper.NoteActivity">
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
     <item android:title="@string/Next" android:orderInCategory="101" android:id="@+id/action_next"
           app:showAsAction="ifRoom|withText"
-          android:icon="@drawable/ic_navigate_next_white_24dp"/>
+          android:icon="@drawable/ic_navigate_next_white_24dp" android:iconTint="@android:color/holo_orange_dark"/>
     <item android:title="@string/Previous" android:id="@+id/action_previous" app:showAsAction="ifRoom|withText"
-          android:icon="@drawable/ic_navigate_before_white_24dp"/>
+          android:icon="@drawable/ic_navigate_before_white_24dp" android:iconTint="@android:color/holo_orange_dark"/>
 </menu>

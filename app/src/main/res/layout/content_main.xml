@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
-        tools:context=".MainActivity">
+        tools:context=".NoteActivity">
     <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -34,4 +34,5 @@
             app:layout_constraintEnd_toEndOf="@+id/spinnerCourses"
             app:layout_constraintStart_toStartOf="@+id/spinnerCourses"
             android:hint="Note title"/>
+
 </android.support.constraint.ConstraintLayout>
